@@ -84,7 +84,7 @@ class CONFIG:
     scheduler = "CosineAnnealingLR"
     
     # Data paths
-    project_root = r"C:\Users\Donghyeok Choi\Dropbox\피부암 project"
+    project_root = Path(r"C:\Users\Donghyeok Choi\Dropbox\피부암 project")
     
     dataset14_root = os.path.join(
         project_root, "14.안면부 피부질환 이미지 합성데이터", "3.개방데이터", "1.데이터"
@@ -1068,7 +1068,7 @@ def comprehensive_evaluation(model, data_loader, dataset_name="Test"):
         index=CONFIG.class_names,
         columns=CONFIG.class_names
     )
-    cm_path = CONFIG.project_root / f"{dataset_name.lower()}_confusion_matrix.csv"
+    cm_path = CONFIG.project_root / f"{dataset_name.lower()}_confusion_matrix_resnet.csv"
     cm_df.to_csv(cm_path, encoding='utf-8-sig')
     print(f"  ✅ CSV saved: {cm_path}")
     
@@ -1091,7 +1091,7 @@ def comprehensive_evaluation(model, data_loader, dataset_name="Test"):
         plt.yticks(rotation=0)
         plt.tight_layout()
         
-        cm_img_path = CONFIG.project_root / f"{dataset_name.lower()}_confusion_matrix.png"
+        cm_img_path = CONFIG.project_root / f"{dataset_name.lower()}_confusion_matrix_resnet.png"
         plt.savefig(cm_img_path, dpi=300, bbox_inches='tight')
         print(f"  ✅ Image saved: {cm_img_path}")
         plt.close()
@@ -1202,7 +1202,7 @@ def visualize_model_performance(history, results=None, save_dir=None):
     axes[1, 1].grid(True, alpha=0.3)
     
     plt.tight_layout()
-    save_path = save_dir / 'training_curves.png'
+    save_path = save_dir / 'training_curves_resnet.png'
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
     print(f"✅ Training curves saved: {save_path}")
     plt.close()
@@ -1287,7 +1287,7 @@ def visualize_model_performance(history, results=None, save_dir=None):
         axes[1, 1].legend(handles=legend_elements, loc='upper right')
         
         plt.tight_layout()
-        save_path = save_dir / 'per_class_performance.png'
+        save_path = save_dir / 'per_class_performance_resnet.png'
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
         print(f"✅ Per-class performance saved: {save_path}")
         plt.close()
@@ -1340,7 +1340,7 @@ def visualize_model_performance(history, results=None, save_dir=None):
                            f'{val:.3f}', ha='center', va='bottom', fontsize=11, fontweight='bold')
             
             plt.tight_layout()
-            save_path = save_dir / 'risk_level_performance.png'
+            save_path = save_dir / 'risk_level_performance_resnet.png'
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
             print(f"✅ Risk-level performance saved: {save_path}")
             plt.close()
@@ -1389,7 +1389,7 @@ def visualize_model_performance(history, results=None, save_dir=None):
                 bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.3))
         
         plt.tight_layout()
-        save_path = save_dir / 'performance_summary.png'
+        save_path = save_dir / 'performance_summary_resnet.png'
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
         print(f"✅ Performance summary saved: {save_path}")
         plt.close()
